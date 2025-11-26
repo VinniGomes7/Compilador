@@ -1,0 +1,7 @@
+int soma(int a, int b) {
+    return a + b;
+}
+
+int x;
+x = soma(5, 15);
+print(x);
