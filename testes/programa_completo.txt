@@ -1,0 +1,10 @@
+int x;
+
+int soma(int a, int b) {
+    return a + b;
+}
+
+procedure iniciar() {
+    x = soma(3, 4);
+    print(x);
+}
