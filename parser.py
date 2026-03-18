@@ -234,9 +234,12 @@ class Parser:
 
         if t == "NUM":
             tok = self.consume("NUM")
-            # Se o valor tiver um ponto (float), marcamos como float, senão int
             tipo_num = "float" if isinstance(tok.valor, float) else "int"
             return {"kind": "lit", "tipo": tipo_num, "valor": tok.valor}
+
+        if t == "CHAR":
+            tok = self.consume("CHAR")
+            return {"kind": "lit", "tipo": "char", "valor": tok.valor}
 
         if t == "TRUE":
             self.consume("TRUE")

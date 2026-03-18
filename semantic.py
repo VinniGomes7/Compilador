@@ -2,7 +2,7 @@
 
 class TabelaSimbolos:
     def __init__(self):
-        # Uma lista de dicionários. Cada dicionário é um nível de escopo (Global, Local...)
+        # Uma lista de dicionários sendo cada dicionário um nível de escopo (Global, Local...)
         self.escopos = [{}]
 
     def entrar_escopo(self):
@@ -22,7 +22,7 @@ class TabelaSimbolos:
         return True
 
     def buscar(self, nome):
-        # Procura a variável do bolso (local) até a casa toda (global)
+        # Procura a variável local até global
         for escopo in reversed(self.escopos):
             if nome in escopo:
                 return escopo[nome]
@@ -41,9 +41,9 @@ class AnalisadorSemantico:
 
         kind = node.get("kind")
 
-        # --- LÓGICA DE LITERAIS (Básico) ---
+        # --- LÓGICA DE LITERAIS  ---
         if kind == "lit":
-            return node["tipo"] # Retorna 'int', 'boolean', etc.
+            return node["tipo"]
 
         # --- LÓGICA DE VARIÁVEIS ---
         elif kind == "var":
@@ -82,14 +82,14 @@ class AnalisadorSemantico:
             tipo_dir = self.verificar(node["right"])
             op = node["op"]
 
-            # Operadores matemáticos (+, -, *, /) só aceitam números
+            # Operadores matemáticos
             if op in ("+", "-", "*", "/"):
                 if tipo_esq in ("int", "float") and tipo_dir in ("int", "float"):
                     # Se um for float, o resultado é float (promoção de tipo)
                     return "float" if (tipo_esq == "float" or tipo_dir == "float") else "int"
                 raise Exception(f"Erro de Tipo: Operador '{op}' não suporta {tipo_esq} e {tipo_dir}")
 
-            # Operadores relacionais (==, !=, <, >) resultam em boolean
+            # Operadores relacionais
             if op in ("==", "!=", "<", ">", "<=", ">="):
                 return "boolean"
 
@@ -101,7 +101,7 @@ class AnalisadorSemantico:
             for p_tipo, p_nome in node.get("params", []):
                 self.tabela.definir(p_nome, p_tipo)
             
-            # Verifica todos os comandos interrnos
+            # Verifica todos os comandos internos
             for cmd in node.get("body", []):
                 self.verificar(cmd)
 

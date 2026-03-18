@@ -13,6 +13,7 @@ class AnalisadorLexico:
     PADROES = [
         ("NUM_FLOAT", r"\d+\.\d+"),   
         ("NUM",    r"\d+"), 
+        ("CHAR_LIT", r"'.*?'"),
         ("ID",     r"[A-Za-z_][A-Za-z0-9_]*"),
         ("OP",     r"==|!=|>=|<=|[+\-*/<>]"),
         ("ATRIB",  r"="),
@@ -64,6 +65,11 @@ class AnalisadorLexico:
 
             elif tipo == "OUTRO":
                 raise Exception(f"Erro léxico: símbolo inválido '{txt}' na linha {self.linha}")
+
+            elif tipo == "CHAR_LIT":
+                # Remove as aspas para guardar apenas o caractere
+                valor_char = txt[1:-1]
+                self.tokens.append(Token("CHAR", valor_char, self.linha, self.coluna))
 
             self.coluna += len(txt)
 
