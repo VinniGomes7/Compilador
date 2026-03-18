@@ -1,0 +1,9 @@
+procedure soma(int a, int b) {
+    print(a + b);
+}
+
+int main() {
+    soma(10, 20);   
+    soma(5);          
+    soma(10, true);   
+}

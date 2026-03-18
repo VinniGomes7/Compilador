@@ -1,0 +1,5 @@
+int a = 10;
+float b = 5.5;
+float resultado = a + b; 
+boolean check = (a > 5);  
+int erro = a + true;     

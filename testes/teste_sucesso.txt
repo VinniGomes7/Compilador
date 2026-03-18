@@ -1,0 +1,6 @@
+int x = 10;
+float pi = 3.14;
+procedure calcular(int a, float b) {
+    float res = a + b;
+    print(res);
+}

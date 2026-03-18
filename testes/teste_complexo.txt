@@ -1,0 +1,14 @@
+float taxa = 0.15;
+
+procedure processar(int valor, char categoria) {
+    if (valor > 100) {
+        float bonus = valor * taxa;
+        print(bonus);
+    }
+}
+
+int main() {
+    int v = 200;
+    processar(v, 'A');
+    return 0;
+}
