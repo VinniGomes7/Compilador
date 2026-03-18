@@ -101,7 +101,7 @@ class AnalisadorSemantico:
             for p_tipo, p_nome in node.get("params", []):
                 self.tabela.definir(p_nome, p_tipo)
             
-            # Verifica todos os comandos internos
+            # Verifica todos os comandos interrnos
             for cmd in node.get("body", []):
                 self.verificar(cmd)
 

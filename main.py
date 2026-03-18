@@ -8,15 +8,15 @@ def executar_arquivo(caminho):
         with open(caminho, "r", encoding="utf-8") as f:
             codigo = f.read()
 
-        print("=== LEXER ===")
+        print("=== LEXER ===")  # lexica
         lexer = AnalisadorLexico(codigo)
         tokens = lexer.analisar()
         for t in tokens:
             print(t)
 
-        print("\n=== PARSER ===")
+        print("\n=== PARSER ===") # sintatica
         parser = Parser(tokens)
-
+ 
         elementos = []
         while parser.peek().tipo != "EOF":
             item = parser.parse_declaration_or_command()
